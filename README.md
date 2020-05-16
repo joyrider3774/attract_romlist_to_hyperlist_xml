@@ -11,3 +11,5 @@ This little tool will try to convert these romslists from attract to hyperspin x
 then use fuzzy name matching to find / rename your roms from multiple directories. CRC is not possible as attract does not store it in 
 the romlists.
 
+## how to use
+Select your attract romlist folder and then press the button to generate the xml files. The xml files will be created in a subfolder called `hyperspin` of your selected romlist folder
