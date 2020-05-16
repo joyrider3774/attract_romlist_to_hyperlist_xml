@@ -1,4 +1,4 @@
-# attract_romlist_to_hyperlist_xml
+# Attract romlist to hyperlist xml converter
 Little tool to convert attract romlists to hyperlist xml files.
 
 ![Screenshot](/docs/screenshot.png)
