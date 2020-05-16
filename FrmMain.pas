@@ -13,13 +13,13 @@ type
     FProgressBar: TProgressBar;
     FGameName, FFilename, FAttractRomListDir: string;
     FLinesCount, FLine: Integer;
-    FDone: Boolean;
+    FDone, FSkipDuplicates: Boolean;
     procedure UpdateUI;
     procedure doParse(const aFileName:String);
   protected
     procedure Execute; override;
   public
-    constructor Create(const aRomDir: String; UiLabel: TLabel; ProgressBar: TProgressBar);
+    constructor Create(const aRomDir: String; SkipDuplicates:Boolean; UiLabel: TLabel; ProgressBar: TProgressBar);
   end;
 
   TMainForm = class(TForm)
@@ -30,6 +30,7 @@ type
     lblProgress: TLabel;
     pbProgress: TProgressBar;
     lblCredits: TLabel;
+    chkSkipDuplicates: TCheckBox;
     procedure btnSelectFolderClick(Sender: TObject);
     procedure edtAttractRomListChange(Sender: TObject);
     procedure btnParseClick(Sender: TObject);
@@ -49,12 +50,13 @@ implementation
 
 {$R *.dfm}
 
-constructor TRomListConvertThread.Create(const aRomDir: String; UiLabel: TLabel; ProgressBar: TProgressBar);
+constructor TRomListConvertThread.Create(const aRomDir: String; SkipDuplicates:Boolean; UiLabel: TLabel; ProgressBar: TProgressBar);
 begin
   inherited Create(True);
   FLabel := UiLabel;
   FAttractRomListDir := aRomDir;
   FProgressBar := ProgressBar;
+  FSkipDuplicates := SkipDuplicates;
   FDone := False;
 end;
 
@@ -103,7 +105,7 @@ procedure TRomListConvertThread.doParse(const aFileName:String);
   end;
 
 var
-  sList, sList2: TStringList;
+  sList, sList2, GameList: TStringList;
   sHeader: string;
   sStream: TStreamWriter;
   Teller, index1, index2: Integer;
@@ -118,6 +120,7 @@ begin
 	          '    </header>';
   sList := TStringList.Create;
   sList2 := TStringList.Create;
+  GameList := TStringList.Create;
   CreateDir(ExtractFileDir(aFilename) + '\HyerList\');
   sStream := TStreamWriter.Create(ExtractFileDir(aFilename) + '\HyerList\' + ChangeFileExt(ExtractFileName(aFileName), '.xml'));
   try
@@ -146,6 +149,9 @@ begin
           FLinesCount := sList.Count;
           FLine := Teller+1;
           FGameName := sList2[0];
+          if FSkipDuplicates then
+            if GameList.IndexOf(FGameName) > -1 then Continue;
+          GameList.Add(FGameName);
           Synchronize(UpdateUi);
           if sList2.Count >= 7 then
           begin
@@ -166,6 +172,7 @@ begin
       sStream.WriteLine('</menu>');
     end;
   finally
+    FreeAndNil(GameList);
     FreeAndNil(sList2);
     FreeAndNil(sList);
     FreeAndNil(sStream);
@@ -180,7 +187,7 @@ begin
     RomListConvertThread.WaitFor;
     RomListConvertThread.Free;
   end;
-  RomListConvertThread := TRomListConvertThread.Create(edtAttractRomList.Text, lblProgress, pbProgress);
+  RomListConvertThread := TRomListConvertThread.Create(edtAttractRomList.Text, chkSkipDuplicates.Checked, lblProgress, pbProgress);
   RomListConvertThread.Start;
 end;
 

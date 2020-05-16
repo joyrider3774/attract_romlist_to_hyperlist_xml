@@ -78,4 +78,14 @@ object MainForm: TMainForm
     Step = 1
     TabOrder = 3
   end
+  object chkSkipDuplicates: TCheckBox
+    Left = 333
+    Top = 56
+    Width = 252
+    Height = 17
+    Caption = 'Skip duplicate game names'
+    Checked = True
+    State = cbChecked
+    TabOrder = 4
+  end
 end
