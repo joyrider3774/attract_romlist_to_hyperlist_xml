@@ -12,4 +12,4 @@ then use fuzzy name matching to find / rename your roms from multiple directorie
 the romlists.
 
 ## how to use
-Select your attract romlist folder and then press the button to generate the xml files. The xml files will be created in a subfolder called `hyperspin` of your selected romlist folder
+Select your attract romlist folder and then press the button to generate the xml files. The xml files will be created in a subfolder called `hyperlist` of your selected romlist folder
