@@ -13,3 +13,6 @@ the romlists.
 
 ## how to use
 Select your attract romlist folder and then press the button to generate the xml files. The xml files will be created in a subfolder called `hyperlist` of your selected romlist folder
+
+## Donations
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/joyrider3774)
