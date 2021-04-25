@@ -3,6 +3,8 @@ Little tool to convert attract romlists to hyperlist xml files.
 
 ![Screenshot](/docs/screenshot.png)
 
+[Latest Release](https://github.com/joyrider3774/attract_romlist_to_hyperlist_xml/releases/latest)
+
 ## information
 i needed xml / dat files for some of the attract related raspberry pi images i had used to be able to use don's 
 hyperspin tools (rom renamer) and verify my roms to rebuild and rename them to names needed by the romlists from attract.
