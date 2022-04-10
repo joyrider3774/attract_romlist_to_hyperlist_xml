@@ -1,4 +1,6 @@
 # Attract romlist to hyperlist xml converter
+![DownloadCountTotal](https://img.shields.io/github/downloads/joyrider3774/attract_romlist_to_hyperlist_xml/total?label=total%20downloads&style=plastic) ![DownloadCountLatest](https://img.shields.io/github/downloads/joyrider3774/attract_romlist_to_hyperlist_xml/latest/total?style=plastic) ![LatestVersion](https://img.shields.io/github/v/tag/joyrider3774/attract_romlist_to_hyperlist_xml?label=Latest%20version&style=plastic) ![License](https://img.shields.io/github/license/joyrider3774/attract_romlist_to_hyperlist_xml?style=plastic)
+
 Little tool to convert attract romlists to hyperlist xml files.
 
 ![Screenshot](/docs/screenshot.png)
